@@ -33,7 +33,7 @@ class NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("https://zeus-preprod.trendyol.com")
+            .baseUrl("https://zeus-preprod.trendyol.com/")
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

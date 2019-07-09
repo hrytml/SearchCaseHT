@@ -1,4 +1,4 @@
-package com.example.searchcase.data.source.remote.model
+package com.example.searchcase.data.source.remote
 
 class SuggestionResponse(
     val beautifiedName :String?,
