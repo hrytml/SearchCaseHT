@@ -2,10 +2,7 @@ package com.example.searchcase.data.source.remote
 
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface AppService {
 
@@ -19,5 +16,12 @@ interface AppService {
     fun fetchSuggestionDetailAsync(
         @Body searchRequest: SearchRequest
     ): Deferred<Response<SuggestionDetailResponse>>
+
+    @GET("product/v2/{contentId}")
+    fun getProductDetailResultAsync(
+        @Path("contentId") contentId: String,
+        @Query("campaignId") campaignId: String? =null,
+        @Query("merchantId") merchantId: String? =null
+    ): Deferred<Response<ProductDetailResponse>>
 
 }

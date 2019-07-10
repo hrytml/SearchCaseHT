@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.searchcase.data.repository.SearchRepository
+import com.example.searchcase.data.source.remote.Product
 import com.example.searchcase.data.source.remote.SearchRequest
 import com.example.searchcase.data.source.remote.SuggestionDetailResponse
 import kotlinx.coroutines.CoroutineScope

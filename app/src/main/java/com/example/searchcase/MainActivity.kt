@@ -1,9 +1,8 @@
 package com.example.searchcase
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -12,10 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.searchcase.databinding.ActivityMainBinding
 import com.example.searchcase.ui.search.SearchViewModel
-import com.example.searchcase.ui.search.SuggestionDetailViewModel
 import com.example.searchcase.ui.search.adapter.SuggestionAdapter
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
@@ -30,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var searchViewModel: SearchViewModel
 
-    private lateinit var suggestionDetailViewModel: SuggestionDetailViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -42,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         searchViewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
 
         suggestionAdapter.setSuggestionList(emptyList())
+
+        suggestionAdapter.suggestionItemClickListener = this::suggestionItemClicked
 
         with(binding.RecyclerViewSearch) {
             adapter = suggestionAdapter
@@ -60,8 +57,6 @@ class MainActivity : AppCompatActivity() {
             binding.searchSuggestionViewState = searchSuggestionStateView
             binding.executePendingBindings()
 
-            suggestionDetailViewModel.searchDetail(searchSuggestionStateView.getSuggestionList().first().id ?: "")
-
         })
 
         // searchViewModel.searchProduct("kitap")
@@ -72,13 +67,14 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        suggestionDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(SuggestionDetailViewModel::class.java)
+    }
 
-        suggestionDetailViewModel.suggestionDetailResultLiveData.observe(this, Observer{
-                suggestionDetailStateView ->
-            Log.d("TestDebug", "${suggestionDetailStateView.getSuggestionDetailList()?.products?.first()?.name}")
-        })
+    fun suggestionItemClicked(keyword: String) {
+        Log.d("recyc" , "$keyword")
 
+        val intent = Intent(this, SuggestionDetailActivity::class.java)
+        intent.putExtra(SuggestionDetailActivity.KEYWORD, keyword)
 
+        startActivity(intent)
     }
 }

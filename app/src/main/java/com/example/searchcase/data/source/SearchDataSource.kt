@@ -1,9 +1,6 @@
 package com.example.searchcase.data.source
 
-import com.example.searchcase.data.source.remote.AppService
-import com.example.searchcase.data.source.remote.SearchRequest
-import com.example.searchcase.data.source.remote.SuggestionDetailResponse
-import com.example.searchcase.data.source.remote.SuggestionResponse
+import com.example.searchcase.data.source.remote.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -14,5 +11,9 @@ class SearchDataSource @Inject constructor(private val appService: AppService){
 
     suspend fun retrieveSuggestionDetailResponse(keyword: SearchRequest): Response<SuggestionDetailResponse> {
         return appService.fetchSuggestionDetailAsync(keyword).await()
+    }
+
+    suspend fun retrieveProductDetailResponse(contentId: String): Response<ProductDetailResponse> {
+        return appService.getProductDetailResultAsync(contentId).await()
     }
 }

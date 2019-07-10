@@ -11,9 +11,12 @@ import com.example.searchcase.ui.search.SuggestionItemViewState
 import javax.inject.Inject
 
 class SuggestionAdapter @Inject constructor() :
-        RecyclerView.Adapter<SuggestionAdapter.ViewHolder>() {
+
+    RecyclerView.Adapter<SuggestionAdapter.ViewHolder>() {
 
     private val suggestionList = mutableListOf<SuggestionResponse>()
+
+    var suggestionItemClickListener: ((String)-> Unit)? = null
 
     fun setSuggestionList(suggestions: List<SuggestionResponse>) {
         val beforeSize = suggestionList.size
@@ -40,12 +43,21 @@ class SuggestionAdapter @Inject constructor() :
         return suggestionList.size
     }
 
-    class ViewHolder(private val binding: ItemSuggestionBinding)
+    inner class ViewHolder(private val binding: ItemSuggestionBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.root.setOnClickListener{
+                suggestionItemClickListener?.invoke(suggestionList[adapterPosition].text)
+            }
+        }
+
         fun bind(suggestion: SuggestionResponse) {
+
             binding.item = SuggestionItemViewState(suggestion)
             binding.executePendingBindings()
         }
     }
+
+
 }

@@ -5,7 +5,7 @@ class SuggestionResponse(
     val eventSuggestionName :String?,
     val id :String?,
     val suggestionType :String?,
-    val text :String?
+    val text :String
 )
 
 

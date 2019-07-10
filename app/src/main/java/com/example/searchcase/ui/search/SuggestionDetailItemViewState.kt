@@ -1,9 +1,51 @@
 package com.example.searchcase.ui.search
 
-import com.example.searchcase.data.source.remote.SuggestionDetailResponse
+import android.view.View
+import com.example.searchcase.data.source.remote.Product
 
-class SuggestionDetailItemViewState(private val suggestionDetailItem: SuggestionDetailResponse) {
-    fun getSuggestionItemName(): String? {
-        return suggestionDetailItem.toString()
+class SuggestionDetailItemViewState(private val product: Product) {
+    fun getCategoryName(): String? {
+        return product.categoryName
     }
+
+    fun getSalePrice(): String{
+        return product.salePrice.toString()
+
+    }
+
+    fun getMarketPriceVisibility(): Int {
+        return if(product.marketPrice <= product.salePrice) {
+            View.GONE
+        } else {
+            View.VISIBLE
+        }
+    }
+
+    fun getMarketPrice(): String {
+        return product.marketPrice.toString()
+    }
+
+    /*fun getCategoryName(): String? {
+        return product.categoryName
+    }*/
+
+    fun getBrandName(): String? {
+        return product.brandName
+    }
+
+    fun getColorName(): String? {
+        return product.colorName
+    }
+
+    fun getImageUrl(): String? {
+        return product.imageUrl
+    }
+
+    fun getDiscountedPrice(): String{
+        return product.discountedPrice.toString()
+    }
+
+
+
+    // getMarketPriceVisibility
 }
