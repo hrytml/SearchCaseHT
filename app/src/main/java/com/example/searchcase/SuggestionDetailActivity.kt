@@ -1,5 +1,6 @@
 package com.example.searchcase
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +44,8 @@ class SuggestionDetailActivity : AppCompatActivity() {
             suggestionDetailAdapter.setSuggestionDetailList(suggestionDetailStateView.getSuggestionDetailList()?.products.orEmpty())
         })
 
+        suggestionDetailAdapter.suggestionDetailItemClickListener = this::openProductDetail
+
         suggestionDetailViewModel.searchDetail(keyword)
 
         with(binding.RecyclerViewDetail) {
@@ -50,6 +53,12 @@ class SuggestionDetailActivity : AppCompatActivity() {
             layoutManager = androidx.recyclerview.widget.GridLayoutManager(this@SuggestionDetailActivity, 2)
         }
 
+    }
+
+    private fun openProductDetail(contentId: String) {
+        val intent = Intent(this, ProductDetailActivity::class.java)
+        intent.putExtra("contentID", contentId)
+        startActivity(intent)
     }
 
     companion object {

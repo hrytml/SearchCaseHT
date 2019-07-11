@@ -25,7 +25,7 @@ class ProductDetailViewModel @Inject constructor(private val searchRepository: S
 
     private fun retrieveProductDetailResult(retrieveProductDetailResponse: ProductDetailResponse?) {
         if (retrieveProductDetailResponse != null){
-            productDetailResultLiveData.postValue(ProductDetailViewState(retrieveProductDetailResponse))
+            productDetailResultLiveData.postValue(ProductDetailViewState(retrieveProductDetailResponse.product))
         }
     }
 

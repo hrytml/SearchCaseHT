@@ -23,7 +23,7 @@ class SuggestionDetailAdapter @Inject constructor():
     {
     private val suggestionDetailList = mutableListOf<Product>()
 
-    val suggestionDetailItemClickListener: ((String)-> Unit)? = null
+    var suggestionDetailItemClickListener: ((String)-> Unit)? = null
 
     fun setSuggestionDetailList(suggestionDetails: List<Product>) {
         val beforeSize = suggestionDetailList.size
@@ -55,7 +55,7 @@ class SuggestionDetailAdapter @Inject constructor():
 
         init {
             binding.root.setOnClickListener{
-                suggestionDetailItemClickListener?.invoke(suggestionDetailList[adapterPosition].toString())
+                suggestionDetailItemClickListener?.invoke(suggestionDetailList[adapterPosition].contentId)
             }
         }
 

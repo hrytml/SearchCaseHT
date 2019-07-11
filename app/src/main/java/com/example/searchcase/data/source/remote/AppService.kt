@@ -19,9 +19,7 @@ interface AppService {
 
     @GET("product/v2/{contentId}")
     fun getProductDetailResultAsync(
-        @Path("contentId") contentId: String,
-        @Query("campaignId") campaignId: String? =null,
-        @Query("merchantId") merchantId: String? =null
+        @Path("contentId") contentId: String
     ): Deferred<Response<ProductDetailResponse>>
 
 }

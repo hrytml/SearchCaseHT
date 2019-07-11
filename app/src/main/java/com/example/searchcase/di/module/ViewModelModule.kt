@@ -3,6 +3,7 @@ package com.example.searchcase.di.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.searchcase.di.ViewModelFactory
+import com.example.searchcase.ui.search.ProductDetailViewModel
 import com.example.searchcase.ui.search.SearchViewModel
 import com.example.searchcase.ui.search.SuggestionDetailViewModel
 import dagger.Binds
@@ -24,4 +25,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SuggestionDetailViewModel::class)
     abstract fun bindSuggestionDetailViewModel(suggestionDetailViewModel: SuggestionDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProductDetailViewModel::class)
+    abstract fun bindProductDetailViewModel(productDetailViewModel: ProductDetailViewModel): ViewModel
 }

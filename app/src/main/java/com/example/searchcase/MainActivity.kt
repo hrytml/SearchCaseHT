@@ -48,10 +48,6 @@ class MainActivity : AppCompatActivity() {
         searchViewModel.suggestionResultLiveData.observe(this, Observer {
             searchSuggestionStateView ->
 
-            // Log.d("TestDebug", "${searchSuggestionStateView.getSuggestionList()[0].text}")
-
-            // binding.textViewFirstResult.text = searchSuggestionStateView.getSuggestionList()[0].text
-
             suggestionAdapter.setSuggestionList(searchSuggestionStateView.getSuggestionList())
 
             binding.searchSuggestionViewState = searchSuggestionStateView
