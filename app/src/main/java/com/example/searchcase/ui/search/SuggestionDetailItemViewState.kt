@@ -9,7 +9,7 @@ class SuggestionDetailItemViewState(private val product: Product) {
     }
 
     fun getSalePrice(): String{
-        return product.salePrice.toString()
+        return product.salePrice.toString() + "TL"
 
     }
 
@@ -22,7 +22,7 @@ class SuggestionDetailItemViewState(private val product: Product) {
     }
 
     fun getMarketPrice(): String {
-        return product.marketPrice.toString()
+        return product.marketPrice.toString() + "TL"
     }
 
     /*fun getCategoryName(): String? {
@@ -42,7 +42,7 @@ class SuggestionDetailItemViewState(private val product: Product) {
     }
 
     fun getDiscountedPrice(): String{
-        return product.discountedPrice.toString()
+        return product.discountedPrice.toString() + "TL"
     }
 
 

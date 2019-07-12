@@ -23,9 +23,8 @@ class SuggestionDetailViewModel @Inject constructor(private val searchRepository
         MutableLiveData<SuggestionDetailItemViewState>()
     }
 
-    fun searchDetail(text: String) {
+    fun searchDetail(searchRequest: SearchRequest) {
         CoroutineScope(Dispatchers.Default + Job()).launch {
-            val searchRequest = SearchRequest(text, 1)
             retrieveSearchDetailResult(searchRepository.retrieveSuggestionDetailResponse(searchRequest))
             Log.d("Detail", "ayakkabı")
         }

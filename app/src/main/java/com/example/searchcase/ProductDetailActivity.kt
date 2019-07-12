@@ -20,13 +20,11 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var productDetailModel: ProductDetailViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         val contentID =  intent.getStringExtra("contentID")
-
 
         val binding: ActivityProductDetailBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_product_detail)
@@ -39,8 +37,6 @@ class ProductDetailActivity : AppCompatActivity() {
         productDetailModel.productDetailResultLiveData.observe(this, Observer { productDetailStateView ->
             binding.productDetailViewState = productDetailStateView
             binding.executePendingBindings()
-
-
         }
         )
 

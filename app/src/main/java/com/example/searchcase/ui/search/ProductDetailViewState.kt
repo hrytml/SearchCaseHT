@@ -17,11 +17,11 @@ class ProductDetailViewState(private val product: ProductResponse?) {
     }
 
     fun getSalePrice(): String{
-        return product?.salePrice.toString()
+        return product?.salePrice.toString() + "TL"
     }
 
     fun getDiscountedPrice(): String{
-        return product?.discountedPrice.toString()
+        return product?.discountedPrice.toString() + "TL"
     }
 
 }
